@@ -25,3 +25,5 @@ npm install
 ## Run
 
 npm run dev
+
+Built and maintained by Abhay Chaudhary.
