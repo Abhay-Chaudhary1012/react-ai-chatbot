@@ -8,7 +8,7 @@ export class Assistant {
   #chat;
   name = "googleai";
 
-  constructor(model = "gemini-2.0-flash") {
+  constructor(model = "gemini-1.5-pro") {
     this.#chat = googleai.chats.create({ model });
   }
 
@@ -60,3 +60,4 @@ export class Assistant {
     }
   }
 }
+console.log("API KEY:", import.meta.env.VITE_GOGGLE_AI_API_KEY?.slice(0, 10));

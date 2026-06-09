@@ -44,8 +44,13 @@ export function Assistant({ onAssistantChange }) {
         </optgroup>
 
         <optgroup label="Open AI">
-          <option value="openai:gpt-4o-mini">GPT-4o mini</option>
-          <option value="openai:chatgpt-4o-latest">ChatGPT-4o</option>
+          <option value="openai:llama-3.3-70b-versatile">
+  Llama 3.3 70B
+</option>
+
+<option value="openai:llama3-8b-8192">
+  Llama 3 8B
+</option>
         </optgroup>
 
         <optgroup label="DeepSeek AI">
