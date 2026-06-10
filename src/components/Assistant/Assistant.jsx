@@ -1,21 +1,15 @@
 import { useEffect, useState } from "react";
-import { Assistant as GoogleAIAssistant } from "../../assistants/googleai";
 import { Assistant as OpenAIAssistant } from "../../assistants/openai";
-import { Assistant as DeepSeekAIAssistant } from "../../assistants/deepseekai";
-import { Assistant as AnthropicAIAssistant } from "../../assistants/anthropicai";
-import { Assistant as XAIAssistant } from "../../assistants/xai";
 import styles from "./Assistant.module.css";
 
 const assistantMap = {
-  googleai: GoogleAIAssistant,
   openai: OpenAIAssistant,
-  deepseekai: DeepSeekAIAssistant,
-  anthropicai: AnthropicAIAssistant,
-  xai: XAIAssistant,
 };
 
 export function Assistant({ onAssistantChange }) {
-  const [value, setValue] = useState("googleai:gemini-2.0-flash");
+  const [value, setValue] = useState(
+    "openai:llama-3.3-70b-versatile"
+  );
 
   function handleValueChange(event) {
     setValue(event.target.value);
@@ -26,7 +20,7 @@ export function Assistant({ onAssistantChange }) {
     const AssistantClass = assistantMap[assistant];
 
     if (!AssistantClass) {
-      throw new Error(`Unknown assistant: ${assistant} or model: ${model}`);
+      throw new Error(`Unknown assistant: ${assistant}`);
     }
 
     onAssistantChange(new AssistantClass(model));
@@ -35,36 +29,20 @@ export function Assistant({ onAssistantChange }) {
   return (
     <div className={styles.Assistant}>
       <span>Assistant:</span>
-      <select defaultValue={value} onChange={handleValueChange}>
-        <optgroup label="Google AI">
-          <option value="googleai:gemini-2.0-flash">Gemini 2.0 Flash</option>
-          <option value="googleai:gemini-2.0-flash-lite">
-            Gemini 2.0 Flash-Lite
-          </option>
-        </optgroup>
 
-        <optgroup label="Open AI">
+      <select value={value} onChange={handleValueChange}>
+        <optgroup label="Groq">
           <option value="openai:llama-3.3-70b-versatile">
-  Llama 3.3 70B
-</option>
-
-<option value="openai:llama3-8b-8192">
-  Llama 3 8B
-</option>
-        </optgroup>
-
-        <optgroup label="DeepSeek AI">
-          <option value="deepseekai:deepseek-chat">DeepSeek-V3</option>
-        </optgroup>
-
-        <optgroup label="Anthropic AI">
-          <option value="anthropicai:claude-3-5-haiku-latest">
-            Claude 3.5 Haiku
+            Llama 3.3 70B
           </option>
-        </optgroup>
 
-        <optgroup label="X AI">
-          <option value="xai:grok-3-mini-latest">Grok 3 Mini</option>
+          <option value="openai:llama3-8b-8192">
+            Llama 3 8B
+          </option>
+
+          <option value="openai:mixtral-8x7b-32768">
+            Mixtral 8x7B
+          </option>
         </optgroup>
       </select>
     </div>
