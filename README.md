@@ -1,11 +1,16 @@
-#DEMO LINK
-https://react-ai-chatbot-git-main-abhay-chaudharys-projects-2e26b5fb.vercel.app/
-
 # 🚀 DSA Buddy AI
 
-An AI-powered DSA learning assistant built using React, Vite, and Groq Llama 3.3 70B.
+## 🌐 Live Demo
 
-DSA Buddy AI helps students learn Data Structures & Algorithms through structured explanations, interview-oriented responses, and interactive chat conversations.
+https://react-ai-chatbot-git-main-abhay-chaudharys-projects-2e26b5fb.vercel.app/
+
+---
+
+## 📖 About The Project
+
+DSA Buddy AI is an AI-powered learning assistant designed to help students learn Data Structures and Algorithms in a structured and interview-oriented way.
+
+The application provides detailed explanations, complexity analysis, roadmap guidance, mock interview support, and LeetCode assistance using the Groq-hosted Llama 3.3 70B model.
 
 ---
 
@@ -24,31 +29,31 @@ DSA Buddy AI helps students learn Data Structures & Algorithms through structure
 * Create multiple conversations
 * Switch between chats
 * Delete chats
-* Persistent chat history
+* Persistent chat history using Local Storage
 
 ### 📚 Quick DSA Actions
 
 * DSA Roadmap
 * LeetCode Help
 * Mock Interview
-* Topic Explanation
+* Explain Any Topic
 
 ### 📄 Export Functionality
 
-* Export chat as TXT
-* Export chat as PDF
+* Export Chat as TXT
+* Export Chat as PDF
 
 ### 📋 Productivity Features
 
-* Copy AI responses
-* Markdown rendering
-* Streaming responses
+* Copy AI Responses
+* Markdown Rendering
+* Streaming Responses
 
 ### 🎨 UI Features
 
-* Responsive design
-* Dark/Light theme
-* Mobile-friendly interface
+* Responsive Design
+* Dark / Light Theme Support
+* Mobile Friendly Interface
 
 ---
 
@@ -65,7 +70,7 @@ DSA Buddy AI helps students learn Data Structures & Algorithms through structure
 * Groq API
 * Llama 3.3 70B Versatile
 
-### Utilities
+### Libraries
 
 * jsPDF
 * UUID
@@ -78,21 +83,15 @@ DSA Buddy AI helps students learn Data Structures & Algorithms through structure
 
 ---
 
-## 📷 Screenshots
-
-Add screenshots here after deployment.
-
----
-
 ## ⚙️ Installation
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/react-ai-chatbot.git
+git clone https://github.com/Abhay-Chaudhary1012/react-ai-chatbot
 ```
 
-Navigate into the project:
+Navigate to the project directory:
 
 ```bash
 cd react-ai-chatbot
@@ -104,13 +103,15 @@ Install dependencies:
 npm install
 ```
 
-Create a `.env` file:
+Create a `.env` file in the root directory:
 
 ```env
 VITE_OPEN_AI_API_KEY=your_groq_api_key
 ```
 
-Run locally:
+> Note: The variable name is `VITE_OPEN_AI_API_KEY`, but the project uses Groq's OpenAI-compatible API endpoint.
+
+Run the application:
 
 ```bash
 npm run dev
@@ -130,7 +131,34 @@ Deploy using:
 
 * Vercel
 * Netlify
-* Any static hosting provider
+* Any Static Hosting Provider
+
+---
+
+## 🏗️ Project Architecture
+
+```text
+src
+│
+├── assistants
+│   ├── openai.js
+│   ├── deepseekai.js
+│   ├── anthropicai.js
+│   ├── googleai.js
+│   └── xai.js
+│
+├── components
+│   ├── Assistant
+│   ├── Chat
+│   ├── Controls
+│   ├── Loader
+│   ├── Messages
+│   ├── Sidebar
+│   └── Theme
+│
+├── App.jsx
+└── main.jsx
+```
 
 ---
 
@@ -138,25 +166,32 @@ Deploy using:
 
 * User Authentication
 * Cloud Database Storage
-* Chat Search
-* Share Conversations
-* Voice Interaction
+* Chat Search Functionality
+* Shared Conversation Links
+* Voice-Based Interaction
+* Chat Categories and Tags
 
 ---
 
 ## 👨‍💻 Author
 
-Abhay Chaudhary
+**Abhay Chaudhary**
 
-Final Year B.Tech Student
+Final Year B.Tech Student | Java | Spring Boot | React | DSA
 
 ---
 
 ## ⭐ Project Highlights
 
-* AI Powered Learning Assistant
+* AI-Powered Learning Assistant
 * Prompt Engineered DSA Mentor
 * Multi-Chat Architecture
 * PDF/TXT Export System
-* Production Deployment on Vercel
+* Local Storage Persistence
 * Responsive Modern UI
+* Production Deployment on Vercel
+* Groq Llama 3.3 70B Integration
+
+---
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
