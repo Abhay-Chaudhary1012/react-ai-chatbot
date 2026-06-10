@@ -14,7 +14,6 @@
 }
 
 .Group:nth-last-of-type(2) {
-  /* 8px - gap between groups */
   min-height: calc(100% - 8px);
 }
 
@@ -42,4 +41,14 @@
   padding: 8px;
   border-radius: 8px;
   background: light-dark(#f9f9f9, #171717);
+}
+
+.CopyButton {
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  background: light-dark(#ececec, #303030);
 }

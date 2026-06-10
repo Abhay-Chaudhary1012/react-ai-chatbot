@@ -11,6 +11,7 @@ const WELCOME_MESSAGE_GROUP = [
 
 export function Messages({ messages }) {
   const messagesEndRef = useRef(null);
+
   const messagesGroups = useMemo(
     () =>
       messages.reduce((groups, message) => {
@@ -25,22 +26,52 @@ export function Messages({ messages }) {
     const lastMessage = messages[messages.length - 1];
 
     if (lastMessage?.role === "user") {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
     }
   }, [messages]);
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text);
+
+    alert("Copied!");
+  }
 
   return (
     <div className={styles.Messages}>
       {[WELCOME_MESSAGE_GROUP, ...messagesGroups].map(
         (messages, groupIndex) => (
-          // Group
-          <div key={groupIndex} className={styles.Group}>
-            {messages.map(({ role, content }, index) => (
-              // Message
-              <div key={index} className={styles.Message} data-role={role}>
-                <Markdown className={styles.Markdown}>{content}</Markdown>
-              </div>
-            ))}
+          <div
+            key={groupIndex}
+            className={styles.Group}
+          >
+            {messages.map(
+              ({ role, content }, index) => (
+                <div
+                  key={index}
+                  className={styles.Message}
+                  data-role={role}
+                >
+                  <Markdown
+                    className={styles.Markdown}
+                  >
+                    {content}
+                  </Markdown>
+
+                  {role === "assistant" && (
+                    <button
+                      className={styles.CopyButton}
+                      onClick={() =>
+                        copyToClipboard(content)
+                      }
+                    >
+                      📋 Copy
+                    </button>
+                  )}
+                </div>
+              )
+            )}
           </div>
         )
       )}

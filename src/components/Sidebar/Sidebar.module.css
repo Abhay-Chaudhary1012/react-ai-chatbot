@@ -88,6 +88,19 @@
   overflow: hidden;
 }
 
+.Chat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.DeleteButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 @media screen and (max-width: 768px) {
   .Sidebar {
     position: fixed;

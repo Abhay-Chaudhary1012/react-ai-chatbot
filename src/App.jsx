@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { jsPDF } from "jspdf";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Chat } from "./components/Chat/Chat";
 import { Assistant } from "./components/Assistant/Assistant";
@@ -92,6 +93,31 @@ function App() {
     );
   }
 
+  function handleDeleteChat(chatId) {
+    const updatedChats = chats.filter(
+      (chat) => chat.id !== chatId
+    );
+
+    setChats(updatedChats);
+
+    if (activeChatId === chatId) {
+      if (updatedChats.length > 0) {
+        setActiveChatId(updatedChats[0].id);
+      } else {
+        const newId = uuidv4();
+
+        setActiveChatId(newId);
+
+        setChats([
+          {
+            id: newId,
+            messages: [],
+          },
+        ]);
+      }
+    }
+  }
+
   function handleExportChat() {
     if (activeChatMessages.length === 0) {
       alert("No messages to export!");
@@ -124,6 +150,32 @@ function App() {
     URL.revokeObjectURL(url);
   }
 
+  function handleExportPDF() {
+    if (activeChatMessages.length === 0) {
+      alert("No messages to export!");
+      return;
+    }
+
+    const doc = new jsPDF();
+
+    const chatContent = activeChatMessages
+      .map(
+        (message) =>
+          `${message.role.toUpperCase()}:\n${message.content}\n`
+      )
+      .join(
+        "\n----------------------------------------\n\n"
+      );
+
+    const lines = doc.splitTextToSize(
+      chatContent,
+      180
+    );
+
+    doc.text(lines, 10, 10);
+    doc.save("dsa-buddy-chat.pdf");
+  }
+
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -138,12 +190,21 @@ function App() {
             DSA Buddy AI
           </h2>
 
-          <button
-            className={styles.ExportButton}
-            onClick={handleExportChat}
-          >
-            Export Chat
-          </button>
+          <div className={styles.ExportButtons}>
+            <button
+              className={styles.ExportButton}
+              onClick={handleExportChat}
+            >
+              Export TXT
+            </button>
+
+            <button
+              className={styles.ExportButton}
+              onClick={handleExportPDF}
+            >
+              Export PDF
+            </button>
+          </div>
         </div>
       </header>
 
@@ -154,6 +215,7 @@ function App() {
           activeChatMessages={activeChatMessages}
           onActiveChatIdChange={handleActiveChatIdChange}
           onNewChatCreate={handleNewChatCreate}
+          onDeleteChat={handleDeleteChat}
         />
 
         <main className={styles.Main}>

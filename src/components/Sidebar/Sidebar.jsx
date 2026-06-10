@@ -7,6 +7,7 @@ export function Sidebar({
   activeChatMessages,
   onActiveChatIdChange,
   onNewChatCreate,
+  onDeleteChat,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -55,10 +56,25 @@ export function Sidebar({
                 key={chat.id}
                 className={styles.Chat}
                 data-active={chat.id === activeChatId}
-                onClick={() => handleChatClick(chat.id)}
               >
-                <button className={styles.ChatButton}>
-                  <div className={styles.ChatTitle}>{chat.title}</div>
+                <button
+                  className={styles.ChatButton}
+                  onClick={() =>
+                    handleChatClick(chat.id)
+                  }
+                >
+                  <div className={styles.ChatTitle}>
+                    {chat.title}
+                  </div>
+                </button>
+
+                <button
+                  className={styles.DeleteButton}
+                  onClick={() =>
+                    onDeleteChat(chat.id)
+                  }
+                >
+                  🗑️
                 </button>
               </li>
             ))}
@@ -66,7 +82,10 @@ export function Sidebar({
       </div>
 
       {isOpen && (
-        <div className={styles.Overlay} onClick={handleSidebarToggle} />
+        <div
+          className={styles.Overlay}
+          onClick={handleSidebarToggle}
+        />
       )}
     </>
   );

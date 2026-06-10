@@ -51,6 +51,11 @@
   font-weight: 600;
 }
 
+.ExportButtons {
+  display: flex;
+  gap: 8px;
+}
+
 .Configuration {
   display: flex;
   flex-wrap: wrap;
