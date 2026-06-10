@@ -1,3 +1,4 @@
+console.log("OPENAI KEY =", import.meta.env.VITE_OPEN_AI_API_KEY);
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -48,6 +49,3 @@ export class Assistant {
     return error;
   }
 }
-
-console.log("API KEY EXISTS:", !!import.meta.env.VITE_OPEN_AI_API_KEY);
-console.log("API KEY VALUE:", import.meta.env.VITE_OPEN_AI_API_KEY?.slice(0, 8));
