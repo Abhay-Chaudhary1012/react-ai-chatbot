@@ -32,8 +32,23 @@
   height: 64px;
 }
 
+.TitleRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
 .Title {
   margin: 0;
+}
+
+.ExportButton {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .Configuration {
@@ -48,5 +63,9 @@
 @media screen and (max-width: 768px) {
   .Header {
     padding-left: 0;
+  }
+
+  .TitleRow {
+    flex-direction: column;
   }
 }

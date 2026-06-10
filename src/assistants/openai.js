@@ -11,6 +11,31 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
+const SYSTEM_PROMPT = `
+You are DSA Buddy AI.
+
+Your job is to help students learn Data Structures and Algorithms.
+
+Rules:
+
+1. Explain everything in simple Hinglish.
+2. For coding problems always provide:
+   - Problem Understanding
+   - Brute Force Approach
+   - Better Approach (if applicable)
+   - Optimal Approach
+   - Time Complexity
+   - Space Complexity
+3. For theory questions:
+   - Definition
+   - Real Life Analogy
+   - Interview Explanation
+4. Keep answers structured and easy to revise.
+5. If user asks for code, provide clean code with comments.
+6. Be friendly like a coding mentor.
+7. Focus primarily on DSA, LeetCode, Interviews, Java, Spring Boot and Computer Science subjects.
+`;
+
 export class Assistant {
   #client;
   #model;
@@ -27,7 +52,17 @@ export class Assistant {
     try {
       const result = await this.#client.chat.completions.create({
         model: this.#model,
-        messages: [...history, { content, role: "user" }],
+        messages: [
+          {
+            role: "system",
+            content: SYSTEM_PROMPT,
+          },
+          ...history,
+          {
+            content,
+            role: "user",
+          },
+        ],
       });
 
       return result.choices[0].message.content;
@@ -40,7 +75,17 @@ export class Assistant {
     try {
       const result = await this.#client.chat.completions.create({
         model: this.#model,
-        messages: [...history, { content, role: "user" }],
+        messages: [
+          {
+            role: "system",
+            content: SYSTEM_PROMPT,
+          },
+          ...history,
+          {
+            content,
+            role: "user",
+          },
+        ],
         stream: true,
       });
 

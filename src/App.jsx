@@ -92,6 +92,38 @@ function App() {
     );
   }
 
+  function handleExportChat() {
+    if (activeChatMessages.length === 0) {
+      alert("No messages to export!");
+      return;
+    }
+
+    const chatContent = activeChatMessages
+      .map(
+        (message) =>
+          `${message.role.toUpperCase()}:\n${message.content}\n`
+      )
+      .join(
+        "\n----------------------------------------\n\n"
+      );
+
+    const blob = new Blob([chatContent], {
+      type: "text/plain;charset=utf-8",
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "dsa-buddy-chat.txt";
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
@@ -101,9 +133,18 @@ function App() {
           alt="DSA Buddy AI"
         />
 
-        <h2 className={styles.Title}>
-          DSA Buddy AI
-        </h2>
+        <div className={styles.TitleRow}>
+          <h2 className={styles.Title}>
+            DSA Buddy AI
+          </h2>
+
+          <button
+            className={styles.ExportButton}
+            onClick={handleExportChat}
+          >
+            Export Chat
+          </button>
+        </div>
       </header>
 
       <div className={styles.Content}>
