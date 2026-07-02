@@ -41,9 +41,9 @@ export class Assistant {
   #model;
 
   constructor(
-    model = "llama-3.3-70b-versatile",
-    client = openai
-  ) {
+  model = "openai/gpt-oss-120b",
+  client = openai
+){
     this.#client = client;
     this.#model = model;
   }
