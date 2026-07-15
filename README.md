@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/banner.png" alt="DSA Buddy AI Banner" width="100%">
+</p>
+
 # 🚀 DSA Buddy AI
 
 An AI-powered DSA learning assistant built using React, Vite, and Groq's OpenAI-compatible API. It helps students understand Data Structures & Algorithms through structured explanations, interview-oriented guidance, mock interviews, and interactive conversations.
